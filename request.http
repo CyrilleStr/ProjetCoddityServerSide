@@ -13,10 +13,10 @@ POST http://127.0.0.1:8000/auth/token/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"cyrille1",
+    "username":"cyrille2",
     "password":"calottedetesmorts"
 }
 
 ### List user : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/auth/list HTTP/1.1
-Authorization: Token f029bd845c0fc6f7fb5d51af45b7f7e6f623c695
+Authorization: Token 08f8f0310db1305a1262d7d72a15bfb75e8c202b
