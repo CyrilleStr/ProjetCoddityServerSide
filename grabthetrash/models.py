@@ -2,38 +2,36 @@ from tkinter import CASCADE
 from tokenize import String
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.translation import gettext_lazy as _ 
 
-class Coordinate(models.Model):
-    longitude = models.IntegerField()
-    latitude = models.IntegerField()
-
-class Validation(models.Model):
-    validator = models.ForeignKey(User,on_delete=models.CASCADE)
-    isValid = models.BooleanField()
-
-class ThirdPratValidationObject(models.Model):
-    imagePath:String = "img/default/"
+class ThirdPartValidationObject(models.Model):
+    imagePath = "default/"
     
     # Database model
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
-    isAccepted = models.BooleanField()
-    location = models.ForeignKey(Coordinate,on_delete=models.CASCADE)
-    image = models.ImageField(upload_to=imagePath)
-    thirdPartValidation1 = models.ForeignKey(Validation,on_delete=models.CASCADE,related_name="thirdPartValidation1")
-    thirdPartValidation2 = models.ForeignKey(Validation,on_delete=models.CASCADE,related_name="thirdPartValidation2")
-    thirdPartValidation3 = models.ForeignKey(Validation,on_delete=models.CASCADE,related_name="thirdPartValidation3")
+    isAccepted = models.BooleanField(null=True)
+    latitude = models.IntegerField()
+    longitude = models.IntegerField()
+    image = models.ImageField(_("Image"),upload_to=imagePath, default='defaults.jpg')
+    validator1 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator1",null=True)
+    validatorVerdict1 = models.BooleanField(null=True)
+    validator2 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator2",null=True)
+    validatorVerdict2 = models.BooleanField(null=True)
+    validator3 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator3",null=True)
+    validatorVerdict3 = models.BooleanField(null=True)
 
     def refreshIsValid(self):
-        if self.thirdPartValidation1 and self.thirdPartValidation1 and self.thirdPartValidation1:
-            if self.thirdPartValidation1.isValid and self.thirdPartValidation1.isValid and self.thirdPartValidation1.isValid:
+        if self.validatorId1 and self.validatorId2 and self.validatorId3:
+            if self.validatorVerdict1 and self.validatorVerdict2 and self.validatorVerdict3:
                 self.isAccepted = True
-            self.isAccepted = False
+            else:
+                self.isAccepted = False
         else: 
-            self.isAccepted = False
+            self.isAccepted = None
         return self.isAccepted
 
-class Bin(ThirdPratValidationObject):
-    imagePath = "img/bin/"
+class Bin(ThirdPartValidationObject):
+    imagePath = "bin/"
 
-class Garbage(ThirdPratValidationObject):
-    imagePath = "img/garbage/"
+class Garbage(ThirdPartValidationObject):
+    imagePath = "garbage/"

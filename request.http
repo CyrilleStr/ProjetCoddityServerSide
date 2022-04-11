@@ -1,28 +1,5 @@
 ### Create user : Success-code = 201
 
-POST http://127.0.0.1:8000/auth/register/ HTTP/1.1
-content-type: application/json
-
-{
-    "username":"cyrille1",
-    "password":"calottedetesmorts"
-}
-
-### Get token : Success-code = 200
-POST http://127.0.0.1:8000/auth/token/ HTTP/1.1
-content-type: application/json
-
-{
-    "username":"cyrille2",
-    "password":"calottedetesmorts"
-}
-
-### List user : Success-code = 200 (when authentification)
-GET http://127.0.0.1:8000/auth/list HTTP/1.1
-Authorization: Token 08f8f0310db1305a1262d7d72a15bfb75e8c202b
-
-### Create user : Success-code = 201
-
 POST https://projetcoddityserverside.herokuapp.com/auth/register/ HTTP/1.1
 content-type: application/json
 

@@ -5,10 +5,9 @@ from .models import *
 class BinSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bin
-        fields = ('owner', 'isAccepted', 'location','image','thirdPartValidation1','thirdPartValidation2','thirdPartValidation3')
+        fields = ('pk','owner', 'isAccepted', 'latitude','longitude','image','validator1','validatorVerdict1','validator2','validatorVerdict2','validator3','validatorVerdict3')
 
 class GarbageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Garbage
-        fields = ('owner', 'isAccepted', 'location','image','thirdPartValidation1','thirdPartValidation2','thirdPartValidation3')
-        
+        fields = ('pk','owner', 'isAccepted', 'latitude','longitude','image','validator1','validatorVerdict1','validator2','validatorVerdict2','validator3','validatorVerdict3')

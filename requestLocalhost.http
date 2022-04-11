@@ -1,0 +1,58 @@
+### Create user : Success-code = 201
+
+POST http://127.0.0.1:8000/auth/register/ HTTP/1.1
+content-type: application/json
+
+{
+    "username":"cyrille1",
+    "password":"calottedetesmorts"
+}
+
+### Get token : Success-code = 200
+POST http://127.0.0.1:8000/auth/token/ HTTP/1.1
+content-type: application/json
+
+{
+    "username":"cyrille1",
+    "password":"calottedetesmorts"
+}
+
+### List user : Success-code = 200 (when authentification)
+GET http://127.0.0.1:8000/auth/list HTTP/1.1
+Authorization: Token 88b880efa0177ffcadeb04e80b731730ee08c23a
+
+### Bin List
+
+GET http://127.0.0.1:8000/grabthetrash/list-bin/ HTTP/1.1
+Authorization: Token 88b880efa0177ffcadeb04e80b731730ee08c23a
+
+### Add bin
+
+POST http://localhost:8000/grabthetrash/add-bin/ HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Token 88b880efa0177ffcadeb04e80b731730ee08c23a
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Type: application/json
+Content-Disposition: form-data; name="owner"
+{
+    "owner":"2"
+}
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Type: application/json
+Content-Disposition: form-data; name="latitude"
+{
+    "latitude":"456465"
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Type: text/plain
+Content-Disposition: form-data; name="longitude"
+"16545646"
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="image.jpg"
+Content-Type: image/jpg
+
+< ./image.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
