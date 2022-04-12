@@ -3,7 +3,7 @@
 - Android app Api developed with Django Rest Framework
 - UTBM school Project
 ## Api usage
-```json
+```js
 /* Create new user */
 POST "https://projetcoddityserverside.herokuapp.com/auth/register/" HTTP/1.1
 content-type: application/json
