@@ -5,14 +5,14 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _ 
 
 class ThirdPartValidationObject(models.Model):
-    imagePath = "default/"
-    
-    # Database model
+    def imagePath():
+        return "default/"
+
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     isAccepted = models.BooleanField(null=True)
     latitude = models.IntegerField()
     longitude = models.IntegerField()
-    image = models.ImageField(_("Image"),upload_to=imagePath, default='defaults.jpg')
+    image = models.ImageField(_("Image"),upload_to=imagePath(), default='defaults.jpg')
     validator1 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator1",null=True)
     validatorVerdict1 = models.BooleanField(null=True)
     validator2 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator2",null=True)
@@ -31,7 +31,10 @@ class ThirdPartValidationObject(models.Model):
         return self.isAccepted
 
 class Bin(ThirdPartValidationObject):
-    imagePath = "bin/"
+
+    def imagePath():
+        return "bin/"
 
 class Garbage(ThirdPartValidationObject):
-    imagePath = "garbage/"
+    def imagePath():
+        return "garbage/"
