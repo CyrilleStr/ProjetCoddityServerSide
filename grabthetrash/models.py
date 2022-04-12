@@ -1,4 +1,3 @@
-from tkinter import CASCADE
 from tokenize import String
 from django.contrib.auth.models import User
 from django.db import models
