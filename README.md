@@ -42,7 +42,7 @@ Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
   }
 ]
 ```
-## Installation
+## Dev env installation
 ```bash
 # Create a virtual environment to isolate our package dependencies locally
 python3 -m venv env
@@ -60,3 +60,11 @@ python manage.py migrate --noinput
 # Launch debug application
 python manage.py runserver
 ```
+## Heroku Deploy 
+- Create heroku app and follow instructions
+- ```
+  # Deploy modifications
+  git commit 
+  git push heroku main
+  ```
+
