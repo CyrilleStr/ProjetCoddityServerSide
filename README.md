@@ -43,9 +43,10 @@ Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 ]
 
 /* Add bin using authentification token */
-POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/add-bin/" HTTP/1.1
+POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/add-item/" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 
+isBin:True
 owner:2
 latitude:564
 longitude:45656
@@ -53,6 +54,7 @@ image:image.jpg
 /* Expected response */
 {
     "pk": 1,
+    "isBin":true,
     "owner": 2,
     "isAccepted": false,
     "latitude": 564,
@@ -67,7 +69,7 @@ image:image.jpg
 }
 
 /* List bin using authentification token */
-GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/list-bin" HTTP/1.1
+GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/list-item" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 /* Expected response */
 [
@@ -100,6 +102,24 @@ Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
         "validatorVerdict3": false
     }
 ]
+
+/* Get item (3 maximum, bin or garbage) to validate using authentification token */
+GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/items-to-validate" HTTP/1.1
+Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
+/* Expected response */
+// Same as before
+
+/* Post user answers about item to validate using authentification token */
+POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/items-validation" HTTP/1.1
+Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
+pk1:1
+answer1:True
+pk2:2
+answer2:False
+pk3:0 // When no answers
+answer3:False
+/* Expected response */
+status code = 200
 ```
 
 ## Dev env installation

@@ -1,12 +1,16 @@
+from ssl import VerifyFlags
+from xmlrpc.client import Boolean
 from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import gettext_lazy as _ 
 
-class ThirdPartValidationObject(models.Model):
+class Item(models.Model):
     def imagePath():
         return "default/"
 
+    isBin = models.BooleanField()
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
+    isVerified = models.BooleanField(null=False,default=False)
     isAccepted = models.BooleanField(null=True)
     latitude = models.IntegerField()
     longitude = models.IntegerField()
@@ -18,21 +22,30 @@ class ThirdPartValidationObject(models.Model):
     validator3 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator3",null=True)
     validatorVerdict3 = models.BooleanField(null=True)
 
-    def refreshIsValid(self):
-        if self.validatorId1 and self.validatorId2 and self.validatorId3:
+    def refreshIsAccepted(self):
+        if self.validator1 and self.validator2 and self.validator3:
+            self.isVerified = True
             if self.validatorVerdict1 and self.validatorVerdict2 and self.validatorVerdict3:
                 self.isAccepted = True
             else:
                 self.isAccepted = False
         else: 
-            self.isAccepted = None
+            self.isVerified = False
         return self.isAccepted
 
-class Bin(ThirdPartValidationObject):
-
-    def imagePath():
-        return "bin/"
-
-class Garbage(ThirdPartValidationObject):
-    def imagePath():
-        return "garbage/"
+    def addVerdict(self, validator:User,verdict:Boolean):
+        if self.validator1 is None:
+            self.validator1 = validator
+            self.validatorVerdict1 = verdict
+            return True;
+        elif self.validator2 is None:
+            self.validator2 = validator
+            self.validatorVerdict2 = verdict
+            return True;
+        elif self.validator3 is None:
+            self.validator3 = validator
+            self.validatorVerdict3 = verdict
+            self.refreshIsAccepted()
+            return True;
+        else:
+            return False;
