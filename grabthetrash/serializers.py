@@ -18,7 +18,7 @@ class BinCoordinatesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bin
         fields = (
-            "owner",
+            "pk",
             "latitude",
             "longitude",
         )
