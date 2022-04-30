@@ -74,3 +74,12 @@ def garbagesValidation(request):
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
+@api_view(['GET'])
+def setAllBinValid(request):
+    bins = Bin.objects.all()
+    for bin in bins:
+        bin.isAccepted = True
+        bin.isVerified = True
+        bin.save()
+    return Response(status=status.HTTP_200_OK)
+
