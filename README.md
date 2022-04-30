@@ -42,75 +42,60 @@ Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
   }
 ]
 
-/* Add bin using authentification token */
-POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/add-item/" HTTP/1.1
+/* Add garbage using authentification token */
+POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/add-garbage/" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 
-isBin:True
 owner:2
 latitude:564
 longitude:45656
 image:image.jpg
 /* Expected response */
 {
-    "pk": 1,
-    "isBin":true,
     "owner": 2,
-    "isAccepted": false,
+    "isRatingDone": false,
     "latitude": 564,
     "longitude": 45656,
-    "image": "/media/default/Capture_d%C3%A9cran_110.png",
-    "validator1": null,
-    "validatorVerdict1": false,
-    "validator2": null,
-    "validatorVerdict2": false,
-    "validator3": null,
-    "validatorVerdict3": false
+    "image": "/media/garbage/Capture_d%C3%A9cran_127.png",
+    "judge1": null,
+    "ratingJudge1": null,
+    "judge2": null,
+    "ratingJudge2": null,
+    "judge3": null,
+    "ratingJudge3": null
 }
 
-/* List bin using authentification token */
-GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/list-item" HTTP/1.1
+/* List garbage using authentification token */
+GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/list-bin" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 /* Expected response */
 [
     {
-        "pk": 1,
         "owner": 2,
+        "isVerified": false,
         "isAccepted": false,
         "latitude": 564,
         "longitude": 45656,
-        "image": "https://projetcoddityserverside.herokuapp.com/media/default/Capture_d%C3%A9cran_110.png",
-        "validator1": null,
-        "validatorVerdict1": false,
-        "validator2": null,
-        "validatorVerdict2": false,
-        "validator3": null,
-        "validatorVerdict3": false
+        "image": "http://localhost:8000/media/defaults.jpg"
     },
     {
-        "pk": 1,
         "owner": 2,
+        "isVerified": false,
         "isAccepted": false,
         "latitude": 564,
         "longitude": 45656,
-        "image": "https://projetcoddityserverside.herokuapp.com/media/default/Capture_d%C3%A9cran_110.png",
-        "validator1": null,
-        "validatorVerdict1": false,
-        "validator2": null,
-        "validatorVerdict2": false,
-        "validator3": null,
-        "validatorVerdict3": false
+        "image": "http://localhost:8000/media/defaults.jpg"
     }
 ]
 
-/* Get item (3 maximum, bin or garbage) to validate using authentification token */
-GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/items-to-validate" HTTP/1.1
+/* Get garbages (3 maximum) to validate using authentification token */
+GET "https://projetcoddityserverside.herokuapp.com/grabthetrash/garbages-to-validate" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 /* Expected response */
 // Same as before
 
 /* Post user answers about item to validate using authentification token */
-POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/items-validation" HTTP/1.1
+POST "https://projetcoddityserverside.herokuapp.com/grabthetrash/garbages-validation" HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
 pk1:1
 answer1:True

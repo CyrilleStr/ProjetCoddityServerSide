@@ -14,6 +14,15 @@ class BinSerializer(serializers.ModelSerializer):
             'image',
         )
 
+class BinCoordinatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Bin
+        fields = (
+            "owner",
+            "latitude",
+            "longitude",
+        )
+
 class GarbageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Garbage

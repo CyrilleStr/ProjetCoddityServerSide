@@ -24,6 +24,10 @@ class BinList(generics.ListAPIView):
     queryset = Bin.objects.all()
     serializer_class = BinSerializer
 
+class BinCoordinatesList(generics.ListAPIView):
+    queryset = Bin.objects.filter(isAccepted=True)
+    serializer_class = BinCoordinatesSerializer
+
 class GargabeCreate(APIView):
     parser_classes = [MultiPartParser, FormParser]
     def post(self, request, format=None):
@@ -69,3 +73,4 @@ def garbagesValidation(request):
         return Response(status=status.HTTP_200_OK)
     else:
         return Response(status=status.HTTP_400_BAD_REQUEST)
+
