@@ -2,7 +2,32 @@ from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import *
 
-class ItemSerializer(serializers.ModelSerializer):
+class BinSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Item
-        fields = ('pk','isBin','owner', 'isVerified', 'isAccepted', 'latitude','longitude','image','validator1','validatorVerdict1','validator2','validatorVerdict2','validator3','validatorVerdict3')
+        model = Bin
+        fields = (
+            'owner',
+            'isVerified', 
+            'isAccepted', 
+            'latitude',
+            'longitude',
+            'image',
+        )
+
+class GarbageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Garbage
+        fields = (
+            'owner',
+            'isRatingDone', 
+            'latitude',
+            'longitude',
+            'image',
+            'judge1',
+            'ratingJudge1',
+            'judge2',
+            'ratingJudge2',
+            'judge3',
+            'ratingJudge3',
+        )
+
