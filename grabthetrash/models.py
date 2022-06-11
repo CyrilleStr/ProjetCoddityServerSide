@@ -14,7 +14,6 @@ class Bin(models.Model):
     isAccepted = models.BooleanField(null=True)
     latitude = models.IntegerField()
     longitude = models.IntegerField()
-    image = models.ImageField(_("Image"),upload_to="bin/", default='defaults.jpg')
 
 class Garbage(models.Model):
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -22,7 +21,6 @@ class Garbage(models.Model):
     rate = models.IntegerField(null=True)
     latitude = models.IntegerField()
     longitude = models.IntegerField()
-    image = models.ImageField(_("Image"),upload_to="garbage/", default='defaults.jpg')
     judge1 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator1",null=True)
     judge2 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator2",null=True)
     judge3 = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name="validator3",null=True)

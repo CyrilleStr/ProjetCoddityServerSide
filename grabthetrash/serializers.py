@@ -11,7 +11,6 @@ class BinSerializer(serializers.ModelSerializer):
             'isAccepted', 
             'latitude',
             'longitude',
-            'image',
         )
 
 class BinCoordinatesSerializer(serializers.ModelSerializer):
@@ -31,7 +30,6 @@ class GarbageSerializer(serializers.ModelSerializer):
             'isRatingDone', 
             'latitude',
             'longitude',
-            'image',
             'judge1',
             'ratingJudge1',
             'judge2',
