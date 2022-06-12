@@ -4,19 +4,30 @@ POST https://projetcoddityserverside.herokuapp.com/auth/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"zebi",
-    "password":"calottedetesmorts"
+    "username":"a",
+    "password":"a"
 }
 
 ### Get token : Success-code = 200
-POST https://projetcoddityserverside.herokuapp.com/auth/token/ HTTP/1.1
+POST https://projectcoddityserverside.herokuapp.com/auth/token/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"cyrille1",
-    "password":"calottedetesmorts"
+    "username":"a",
+    "password":"a"
 }
 
 ### List user : Success-code = 200 (when authentification)
 GET https://projetcoddityserverside.herokuapp.com/auth/list HTTP/1.1
 Authorization: Token 8850f382acf9d6ea761024e9cf8e9b51a3d5e884
+
+### Get token : Success-code = 200
+POST https://projectcoddityserverside.herokuapp.com/grabthetrash/add-garbage/ HTTP/1.1
+content-type: application/json
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
+
+{
+    "owner":"1",
+    "latitude":"45",
+    "longitude":"45"
+}

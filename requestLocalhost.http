@@ -4,8 +4,8 @@ POST http://127.0.0.1:8000/auth/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"cyrille1",
-    "password":"calottedetesmorts"
+    "username":"b",
+    "password":"b"
 }
 
 ### Get token : Success-code = 200
@@ -13,18 +13,40 @@ POST http://127.0.0.1:8000/auth/token/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"cyrille1",
-    "password":"calottedetesmorts"
+    "username":"b",
+    "password":"b"
 }
 
 ### List user : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/auth/list HTTP/1.1
-Authorization: Token 88b880efa0177ffcadeb04e80b731730ee08c23a
+Authorization: Token 6e51b7c6e647a3dd2208e9f24f410905e86db979
 
 ### Bin List
 
-GET http://127.0.0.1:8000/grabthetrash/list-bin/ HTTP/1.1
-Authorization: Token 88b880efa0177ffcadeb04e80b731730ee08c23a
+GET http://127.0.0.1:8000/grabthetrash/list-garbage/ HTTP/1.1
+Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+
+### Add garbage : Success-code = 200
+POST http://127.0.0.1:8000/grabthetrash/add-garbage/ HTTP/1.1
+content-type: application/json
+Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+
+{
+    "owner":"2",
+    "latitude":"45",
+    "longitude":"45"
+}
+
+### Add garbage : Success-code = 200
+POST http://127.0.0.1:8000/grabthetrash/add-bin/ HTTP/1.1
+content-type: application/json
+Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+
+{
+    "owner":"2",
+    "latitude":"45",
+    "longitude":"45"
+}
 
 ### Add bin
 

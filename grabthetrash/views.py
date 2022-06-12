@@ -10,7 +10,6 @@ from grabthetrash.serializers import *
 from .models import *
 
 class BinCreate(APIView):
-    parser_classes = [MultiPartParser, FormParser]
     def post(self, request, format=None):
         print(request.data)
         serializer = BinSerializer(data=request.data)
@@ -29,7 +28,6 @@ class BinCoordinatesList(generics.ListAPIView):
     serializer_class = BinCoordinatesSerializer
 
 class GargabeCreate(APIView):
-    parser_classes = [MultiPartParser, FormParser]
     def post(self, request, format=None):
         print(request.data)
         serializer = GarbageSerializer(data=request.data)
