@@ -32,6 +32,6 @@ Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
 
 {
     "owner":"1",
-    "latitude":"45",
-    "longitude":"45"
+    "latitude":"45.5",
+    "longitude":"45.5"
 }

@@ -14,8 +14,10 @@ class BinCreate(APIView):
         print(request.data)
         serializer = BinSerializer(data=request.data)
         if serializer.is_valid():
-             serializer.save()
-             return Response(serializer.data, status=status.HTTP_200_OK)
+             bin = serializer.save()
+             data:dict = serializer.data
+             data.update({"id":str(bin.id)})
+             return Response(data, status=status.HTTP_200_OK)
         else:
              return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -32,8 +34,10 @@ class GargabeCreate(APIView):
         print(request.data)
         serializer = GarbageSerializer(data=request.data)
         if serializer.is_valid():
-             serializer.save()
-             return Response(serializer.data, status=status.HTTP_200_OK)
+             garbage = serializer.save()
+             data:dict = serializer.data
+             data.update({"id":str(garbage.id)})
+             return Response(data, status=status.HTTP_200_OK)
         else:
              return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
