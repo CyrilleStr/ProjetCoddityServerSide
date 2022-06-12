@@ -19,7 +19,7 @@ content-type: application/json
 
 ### List user : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/auth/list HTTP/1.1
-Authorization: Token 6e51b7c6e647a3dd2208e9f24f410905e86db979
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 ### Bin List
 
@@ -29,12 +29,12 @@ Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
 ### Add garbage : Success-code = 200
 POST http://127.0.0.1:8000/grabthetrash/add-garbage/ HTTP/1.1
 content-type: application/json
-Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 {
-    "owner":"2",
-    "latitude":"45",
-    "longitude":"45"
+    "owner":"1",
+    "latitude":"45.5",
+    "longitude":"45.5"
 }
 
 ### Add garbage : Success-code = 200
