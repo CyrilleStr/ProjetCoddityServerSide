@@ -24,7 +24,7 @@ Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 ### Bin List
 
 GET http://127.0.0.1:8000/grabthetrash/list-garbage/ HTTP/1.1
-Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 ### Add garbage : Success-code = 200
 POST http://127.0.0.1:8000/grabthetrash/add-garbage/ HTTP/1.1
@@ -40,7 +40,7 @@ Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 ### Add garbage : Success-code = 200
 POST http://127.0.0.1:8000/grabthetrash/add-bin/ HTTP/1.1
 content-type: application/json
-Authorization: Token 7c22aa4563d989def8dc4127900ad63e46e931ce
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 {
     "owner":"2",
