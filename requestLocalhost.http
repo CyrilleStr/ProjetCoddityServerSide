@@ -17,13 +17,24 @@ content-type: application/json
     "password":"b"
 }
 
+### Get coordinates : Success-code = 200 (when authentification)
+GET http://127.0.0.1:8000/grabthetrash/get-coordinates/ HTTP/1.1
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+
+### Set all bin valid : Success-code = 200 (when authentification)
+GET http://127.0.0.1:8000/grabthetrash/set-all-bins-valid/ HTTP/1.1
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+
+### Delete all bins : Success-code = 200 (when authentification)
+GET http://127.0.0.1:8000/grabthetrash/delete-all-bin/ HTTP/1.1
+Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+
 ### List user : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/auth/list HTTP/1.1
 Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 ### Bin List
-
-GET http://127.0.0.1:8000/grabthetrash/list-garbage/ HTTP/1.1
+GET http://127.0.0.1:8000/grabthetrash/list-bin/ HTTP/1.1
 Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
 
 ### Add garbage : Success-code = 200

@@ -9,5 +9,8 @@ urlpatterns = [
     path('garbages-to-validate/',views.getGarbagesToValidate),
     path('garbages-validation/',views.garbagesValidation),
     path('get-coordinates/',views.BinCoordinatesList.as_view()),
-    path('set-all-bins-valid/',views.setAllBinValid)
+    path('delete-all-bin/',views.deleteAllBins),
+    path('delete-all-garbage/',views.deleteAllGarbages),
+    path('set-all-bins-valid/',views.setAllBinValid),
+    path('get-garbages-to-throw',views.getUserGarbageToThrow)
 ]

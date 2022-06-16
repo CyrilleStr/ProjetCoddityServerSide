@@ -55,6 +55,21 @@ class GargabeList(generics.ListAPIView):
     queryset = Garbage.objects.all()
     serializer_class = GarbageSerializer
 
+@api_view(['GET'])
+def deleteAllBins(request):
+    Bin.objects.all().delete()
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def deleteAllGarbages(request):
+    Garbage.objects.all().delete()
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def getUserGarbageToThrow(request):
+        garbages = Garbage.objects.all().filter(owner=request.user.id,isRatingDone=False)[:20]
+        garbageSerializer = GarbageSerializer(garbages,many=True) 
+        return Response(garbageSerializer.data)
 
 @api_view(['GET'])
 def getGarbagesToValidate(request):
