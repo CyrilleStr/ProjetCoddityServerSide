@@ -55,30 +55,68 @@ class GargabeList(generics.ListAPIView):
     queryset = Garbage.objects.all()
     serializer_class = GarbageSerializer
 
-@api_view(['GET'])
-def deleteAllBins(request):
-    Bin.objects.all().delete()
-    return Response(status=status.HTTP_200_OK)
 
-@api_view(['GET'])
-def deleteAllGarbages(request):
-    Garbage.objects.all().delete()
-    return Response(status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def getUserGarbageToThrow(request):
-        garbages = Garbage.objects.all().filter(owner=request.user.id,isRatingDone=False)[:20]
-        garbageSerializer = GarbageSerializer(garbages,many=True) 
-        return Response(garbageSerializer.data)
+        garbages = Garbage.objects.all().filter(owner=request.user,discard=False)[:20]
+        if garbages.__len__ != 0:
+            data = []
+            for garbage in garbages:
+                data.append(garbage.format())
+            return Response(data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_410_GONE)
 
 @api_view(['GET'])
-def getGarbagesToValidate(request):
-    garbages = Garbage.objects.all().filter(isRatingDone=False)[:3]
-    garbageSerializer = GarbageSerializer(garbages,many=True)
+def getGarbagesToRate(request):
+    garbages = Garbage.objects.all().filter(isRatingDone=False).exclude(owner=request.user)[:3]
     if garbages.__len__ == 0:
-        return Response(garbageSerializer.errors, status=status.HTTP_410_GONE)
+        return Response(status=status.HTTP_410_GONE)
     else:
-        return Response(garbageSerializer.data)
+        data = []
+        for garbage in garbages:
+            data.append(garbage.format())
+        return Response(data,status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def garbageThrown(request):
+    user = User.objects.get(id=request.user.id)
+    if(request.data["garbage_id"]):
+        garbage:Garbage = get_object_or_404(Garbage,pk=request.data['garbage_id'])
+        if(garbage.owner.id == user.id):
+            garbage.discard = True
+            garbage.save()
+            return Response(status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def getUserThrownGarbage(request):
+    user = User.objects.get(id=request.user.id)
+    garbages = Garbage.objects.all().filter(owner=user)
+    data = []
+    for garbage in garbages:
+        data.append(garbage.format())
+    return Response(data)
+
+@api_view(['POST'])
+def postRateGarbage(request):
+    user = User.objects.get(id=request.user.id)
+    if(request.data['garbage_id'] and request.data['note']):
+        garbage:Garbage = get_object_or_404(Garbage,pk=request.data['garbage_id'])
+        if garbage.owner != user:
+            garbage.addNote(user,int(request.data['note']))
+            print("id=" + str(garbage.pk) + " note1=" + str(garbage.ratingJudge1))
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+    else:
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+### Admin functions
 
 @api_view(['POST'])
 def garbagesValidation(request):
@@ -102,6 +140,16 @@ def garbagesValidation(request):
         return Response(status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
+def deleteAllBins(request):
+    Bin.objects.all().delete()
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
+def deleteAllGarbages(request):
+    Garbage.objects.all().delete()
+    return Response(status=status.HTTP_200_OK)
+
+@api_view(['GET'])
 def setAllBinValid(request):
     bins = Bin.objects.all()
     for bin in bins:
@@ -109,4 +157,3 @@ def setAllBinValid(request):
         bin.isVerified = True
         bin.save()
     return Response(status=status.HTTP_200_OK)
-

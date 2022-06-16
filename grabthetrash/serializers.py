@@ -30,11 +30,10 @@ class GarbageSerializer(serializers.ModelSerializer):
             'isRatingDone', 
             'latitude',
             'longitude',
+            'discard',
             'judge1',
             'ratingJudge1',
             'judge2',
             'ratingJudge2',
-            'judge3',
-            'ratingJudge3',
         )
 

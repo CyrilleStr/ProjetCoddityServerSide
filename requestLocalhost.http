@@ -19,42 +19,82 @@ content-type: application/json
 
 ### Get coordinates : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/grabthetrash/get-coordinates/ HTTP/1.1
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 ### Set all bin valid : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/grabthetrash/set-all-bins-valid/ HTTP/1.1
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 ### Delete all bins : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/grabthetrash/delete-all-bin/ HTTP/1.1
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 ### List user : Success-code = 200 (when authentification)
 GET http://127.0.0.1:8000/auth/list HTTP/1.1
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 ### Bin List
 GET http://127.0.0.1:8000/grabthetrash/list-bin/ HTTP/1.1
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+### Garbage List
+GET http://127.0.0.1:8000/grabthetrash/list-garbage/ HTTP/1.1
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+### Garbage List
+GET http://127.0.0.1:8000/grabthetrash/garbages-to-rate/ HTTP/1.1
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+### Garbage List
+GET http://127.0.0.1:8000/grabthetrash/get-garbages-to-throw/ HTTP/1.1
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+### Garbage List
+GET http://127.0.0.1:8000/grabthetrash/get-garbage-thrown/ HTTP/1.1
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+### Garbage List
+POST http://127.0.0.1:8000/grabthetrash/throw-garbage/ HTTP/1.1
+content-type: application/json
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+{
+    "garbage_id":"7"
+}
 
 ### Add garbage : Success-code = 200
 POST http://127.0.0.1:8000/grabthetrash/add-garbage/ HTTP/1.1
 content-type: application/json
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 {
     "owner":"1",
-    "latitude":"45.5",
-    "longitude":"45.5"
+    "latitude":"456.5",
+    "longitude":"456455.5"
 }
 
-### Add garbage : Success-code = 200
+### Add Bin : Success-code = 200
 POST http://127.0.0.1:8000/grabthetrash/add-bin/ HTTP/1.1
 content-type: application/json
-Authorization: Token 0caf48c34782abcb6a1a4b01420910de5bac8122
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
 
 {
-    "owner":"2",
+    "owner":"1",
     "latitude":"45",
     "longitude":"45"
 }
+
+### Rate garbage : Success-code = 200
+POST http://127.0.0.1:8000/grabthetrash/rate-garbage/ HTTP/1.1
+content-type: application/json
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2
+
+{
+    "garbage_id":"7",
+    "note":"44"
+}
+
+###
+
+GET http://127.0.0.1:8000/grabthetrash/delete-all-garbages/ HTTP/1.1
+Authorization: Token 60a88d77a1a9150a8eb29fa38428abe398d424d2

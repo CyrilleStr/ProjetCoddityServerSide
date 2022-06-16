@@ -1,11 +1,11 @@
 ### Create user : Success-code = 201
 
-POST https://projetcoddityserverside.herokuapp.com/auth/register/ HTTP/1.1
+POST https://projectcoddityserverside.herokuapp.com/auth/register/ HTTP/1.1
 content-type: application/json
 
 {
-    "username":"a",
-    "password":"a"
+    "username":"cy",
+    "password":"cy"
 }
 
 ### Get token : Success-code = 200
@@ -17,12 +17,25 @@ content-type: application/json
     "password":"a"
 }
 
+
+
 ### Get coordinates : Success-code = 200 (when authentification)
-GET https://projetcoddityserverside.herokuapp.com/grabthetrash/get-coordinates/ HTTP/1.1
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/get-coordinates/ HTTP/1.1
+content-type: application/json
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
+
+### garbages-to-validate : Success-code = 200 (when authentification)
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/garbages-to-validate/ HTTP/1.1
+content-type: application/json
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
+
+### get-garbages-to-throw/ : Success-code = 200 (when authentification)
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/get-garbages-to-throw HTTP/1.1
+content-type: application/json
 Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
 
 ### List user : Success-code = 200 (when authentification)
-GET https://projetcoddityserverside.herokuapp.com/auth/list HTTP/1.1
+GET https://projectcoddityserverside.herokuapp.com/auth/list HTTP/1.1
 Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
 
 ### lsit garbagge
@@ -39,3 +52,15 @@ Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
     "latitude":"45.5",
     "longitude":"45.5"
 }
+
+### Get coordinates : Success-code = 200 (when authentification)
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/get-coordinates/ HTTP/1.1
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
+
+### Set all bin valid : Success-code = 200 (when authentification)
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/set-all-bins-valid/ HTTP/1.1
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
+
+### Delete all bins : Success-code = 200 (when authentification)
+GET https://projectcoddityserverside.herokuapp.com/grabthetrash/delete-all-bin/ HTTP/1.1
+Authorization: Token 14599080d352889efb9b672e30f25ff6ba129c66
